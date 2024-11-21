@@ -1,0 +1,7 @@
+.Home {
+  min-height: 100vh;
+  background-color: #d4d4d4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,27 @@
+<form class="LoginForm" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field class="example-full-width">
+    <mat-label>Emal</mat-label>
+    <input matInput type="email" id="email" formControlName="email" />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Password</mat-label>
+    <input
+      matInput
+      placeholder="Password"
+      type="password"
+      id="password"
+      formControlName="password"
+    />
+  </mat-form-field>
+
+  <button mat-flat-button>Log In</button>
+
+  @if(invalidCredentials){
+  <mat-error>Invalid credentials, please try again</mat-error>
+  } @if(loginFailed()){
+  <mat-error>{{ errorMsg() }}</mat-error>
+  } @if(isLoading()){
+  <mat-spinner></mat-spinner>
+  }
+</form>
