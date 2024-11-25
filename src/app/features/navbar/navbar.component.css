@@ -1,0 +1,82 @@
+.custom-toolbar {
+  background-color: #46b3b3;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.app-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-right: 8px;
+  font-style: italic;
+}
+
+.mat-icon {
+  font-size: 1.5rem;
+}
+
+.toolbar-right {
+  display: flex;
+  align-items: center;
+}
+
+button.mat-button {
+  font-size: 1em;
+  color: black;
+}
+
+button.mat-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.logout-btn-box {
+  display: flex;
+}
+
+.logout-btn button {
+  padding: 1px 2px;
+}
+
+.menu-items {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.menu-items button {
+  background: none;
+  border: none;
+}
+.menu-items button:hover,
+.logout-btn-box:hover,
+.dropdown-menu button:hover {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.637);
+}
+
+.dropdown-menu button {
+  background: none;
+}
+
+@media (max-width: 768px) {
+  .menu-items {
+    display: none;
+  }
+  .dropdown-menu {
+    display: block;
+  }
+}
+
+@media (min-width: 768px) {
+  .dropdown-menu {
+    display: none;
+  }
+}

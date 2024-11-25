@@ -1,7 +1,23 @@
 .Home {
   min-height: 100vh;
-  background-color: #d4d4d4;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.home__card {
+  width: 400px;
+  background: none;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: none;
+}
+
+.mat-mdc-card-content {
+  width: 100%;
+}
+.mat-mdc-card-content h2 {
+  text-align: center;
+  padding: 0px 0px 48px;
 }

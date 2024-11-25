@@ -1,0 +1,27 @@
+<mat-toolbar color="primary" class="custom-toolbar">
+  <div class="toolbar-left">
+    <span class="app-name">FODORAMA</span>
+    <mat-icon>restaurant</mat-icon>
+  </div>
+  <div class="toolbar-right">
+    <div class="menu-items">
+      <button mat-button>Menu</button>
+      <button mat-button>Search</button>
+      <span class="logout-btn-box">
+        <button mat-button>Logout</button>
+        <mat-icon>logout</mat-icon>
+      </span>
+    </div>
+  </div>
+
+  <div class="dropdown-menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" id="dropdown-menu-list">
+      <button mat-menu-item id="dropdown-menu-list-item">Menu</button>
+      <button mat-menu-item id="dropdown-menu-list-item">Search</button>
+      <button mat-menu-item id="dropdown-menu-list-item">Logout</button>
+    </mat-menu>
+  </div>
+</mat-toolbar>
