@@ -1,4 +1,18 @@
-<app-navbar></app-navbar>
-<main>
-  <router-outlet></router-outlet>
-</main>
+<body>
+  <header>
+    <app-navbar></app-navbar>
+  </header>
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <app-footer></app-footer>
+  @if(isLoading()){
+  <ng-container>
+    <div class="global-spinner">
+      <mat-spinner [diameter]="30"></mat-spinner>
+    </div>
+  </ng-container>
+  }
+</body>

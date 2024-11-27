@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, signal } from '@angular/core';
+import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -9,10 +9,10 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { LoginService } from '../../../login.service';
-import { ErrorService } from '../../../shared/error.service';
+import { AuthService } from '../../../shared/auth.service';
+import { LoadingService } from '../../../shared/loading.service';
 
 @Component({
   selector: 'app-login-form',
@@ -24,16 +24,17 @@ import { ErrorService } from '../../../shared/error.service';
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-    MatProgressSpinnerModule,
   ],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.css',
 })
 export class LoginFormComponent {
+  private readonly loadingService = inject(LoadingService);
   private readonly loginService = inject(LoginService);
-  private readonly errorService = inject(ErrorService);
+  private readonly authService = inject(AuthService);
+
   destroyRef = inject(DestroyRef);
-  isLoading = signal<boolean>(false);
+  isLoading = computed(() => this.loadingService.isLoading());
   loginFailed = signal<boolean>(false);
   errorMsg = signal('');
 
@@ -48,7 +49,8 @@ export class LoginFormComponent {
 
   onSubmit(): void {
     if (this.form.valid) {
-      this.isLoading.set(true);
+      this.loginFailed.set(false);
+      this.loadingService.startLoading();
       const enteredEmail = this.form.controls.email.value!;
       const enteredPassword = this.form.controls.password.value!;
 
@@ -57,19 +59,18 @@ export class LoginFormComponent {
         .subscribe({
           next: (res) => {
             this.errorMsg.set('');
-            window.localStorage.setItem(
-              'foodora-login-token',
-              JSON.stringify(res.token)
-            );
+            console.log(res.token);
+
+            this.authService.login(res.token);
           },
           error: (err) => {
             this.loginFailed.set(true);
             this.errorMsg.set(err);
 
-            this.isLoading.set(false);
+            this.loadingService.stopLoading();
           },
           complete: () => {
-            this.isLoading.set(false);
+            this.loadingService.stopLoading();
           },
         });
 

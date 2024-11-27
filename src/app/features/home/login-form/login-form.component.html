@@ -17,11 +17,11 @@
 
   <button mat-flat-button>Log In</button>
 
-  @if(invalidCredentials){
-  <mat-error>Invalid credentials, please try again</mat-error>
-  } @if(loginFailed()){
-  <mat-error>{{ errorMsg() }}</mat-error>
-  } @if(isLoading()){
-  <mat-spinner></mat-spinner>
-  }
+  <div class="error-placeholder">
+    @if(invalidCredentials || loginFailed()){
+    <ng-container>
+      <mat-error>Invalid credentials, please try again</mat-error>
+    </ng-container>
+    }
+  </div>
 </form>
