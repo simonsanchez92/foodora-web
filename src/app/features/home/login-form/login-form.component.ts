@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../../../login.service';
 import { AuthService } from '../../../shared/auth.service';
 import { LoadingService } from '../../../shared/loading.service';
@@ -32,6 +33,8 @@ export class LoginFormComponent {
   private readonly loadingService = inject(LoadingService);
   private readonly loginService = inject(LoginService);
   private readonly authService = inject(AuthService);
+  private router = inject(Router);
+  private activatedRoute = inject(ActivatedRoute);
 
   destroyRef = inject(DestroyRef);
   isLoading = computed(() => this.loadingService.isLoading());
@@ -62,6 +65,9 @@ export class LoginFormComponent {
             console.log(res.token);
 
             this.authService.login(res.token);
+            this.router.navigate(['/menu'], {
+              relativeTo: this.activatedRoute,
+            });
           },
           error: (err) => {
             this.loginFailed.set(true);

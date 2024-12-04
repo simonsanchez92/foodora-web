@@ -1,18 +1,18 @@
 <mat-toolbar color="primary" class="custom-toolbar">
-  <div class="toolbar-left">
+  <div class="toolbar-left" (click)="navigate('menu')">
     <span class="app-name">FODORAMA</span>
     <mat-icon>restaurant</mat-icon>
   </div>
 
-  @if(isLoggedIn()){
+  @if(isLoggedIn){
   <div class="toolbar-right">
     <div class="menu-items">
-      <button mat-button>Menu</button>
-      <button mat-button>Search</button>
-      <span class="logout-btn-box">
-        <button mat-button (click)="logout()">Logout</button>
-        <mat-icon>logout</mat-icon>
-      </span>
+      <button mat-button (click)="navigate('menu')">Menu</button>
+      <button mat-button (click)="navigate('search')">Search</button>
+
+      <button class="logout-btn" mat-button (click)="logout()">
+        Logout <mat-icon>logout</mat-icon>
+      </button>
     </div>
   </div>
   <div class="dropdown-menu">
@@ -20,11 +20,9 @@
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu" id="dropdown-menu-list">
-      <button mat-menu-item id="dropdown-menu-list-item">Menu</button>
-      <button mat-menu-item id="dropdown-menu-list-item">Search</button>
-      <button mat-menu-item id="dropdown-menu-list-item" (click)="logout()">
-        Logout
-      </button>
+      <button mat-menu-item>Menu</button>
+      <button mat-menu-item (click)="navigate('search')">Search</button>
+      <button mat-menu-item (click)="logout()">Logout</button>
     </mat-menu>
   </div>
   }

@@ -1,0 +1,31 @@
+.banner-container {
+  padding: 120px 0;
+
+  color: white;
+  position: relative;
+  background: url("/assets/banner-img.jpg") rgba(0, 0, 0, 0.6);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: multiply;
+  margin-bottom: 140px;
+}
+
+.banner-content {
+  max-width: 80%;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.banner-content h1 {
+  font-size: 45px;
+}
+
+.button-group {
+  padding: 20px 0;
+}
+
+.button-group button {
+  margin-right: 20px;
+}
