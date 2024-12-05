@@ -11,9 +11,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoginService } from '../../../login.service';
-import { AuthService } from '../../../shared/auth.service';
-import { LoadingService } from '../../../shared/loading.service';
+
+import { AuthService } from '../../../shared/services/auth.service';
+import { LoadingService } from '../../../shared/services/loading.service';
+import { LoginService } from '../../../shared/services/login.service';
 
 @Component({
   selector: 'app-login-form',
@@ -27,7 +28,7 @@ import { LoadingService } from '../../../shared/loading.service';
     MatButtonModule,
   ],
   templateUrl: './login-form.component.html',
-  styleUrl: './login-form.component.css',
+  styleUrl: './login-form.component.scss',
 })
 export class LoginFormComponent {
   private readonly loadingService = inject(LoadingService);

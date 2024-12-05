@@ -3,8 +3,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
-import { AuthService } from '../../shared/auth.service';
-import { LoadingService } from '../../shared/loading.service';
+import { AuthService } from '../../shared/services/auth.service';
+import { LoadingService } from '../../shared/services/loading.service';
 
 @Component({
   selector: 'app-navbar',

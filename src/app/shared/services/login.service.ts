@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
-import { ErrorService } from './shared/error.service';
+import { ErrorService } from './error.service';
 
 @Injectable({
   providedIn: 'root',

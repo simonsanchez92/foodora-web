@@ -3,7 +3,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from '../features/footer/footer.component';
 import { NavbarComponent } from '../features/navbar/navbar.component';
-import { LoadingService } from '../shared/loading.service';
+import { LoadingService } from '../shared/services/loading.service';
 
 @Component({
   selector: 'app-layout',
@@ -15,7 +15,7 @@ import { LoadingService } from '../shared/loading.service';
     MatProgressSpinnerModule,
   ],
   templateUrl: './layout.component.html',
-  styleUrl: './layout.component.css',
+  styleUrl: './layout.component.scss',
 })
 export class LayoutComponent {
   readonly loadingService = inject(LoadingService);
