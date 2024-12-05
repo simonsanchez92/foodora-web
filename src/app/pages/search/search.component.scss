@@ -33,11 +33,11 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  border-top: 2px solid #17242a;
+  // border-top: 2px solid #17242a;
 }
 
 .recipes-container {
-  // border: 2px solid blue;
+  border: 2px solid blue;
   /* width: 100%; */
   background-color: #2b7a77 !important;
   display: grid;

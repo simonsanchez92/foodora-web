@@ -1,0 +1,18 @@
+.mdc-card {
+  width: 300px;
+  height: 360px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.mat-mdc-card-header {
+  /* border: 2px solid black; */
+  /* height: 40px; */
+}
+
+.mdc-card img {
+  /* border: 2px solid red; */
+}

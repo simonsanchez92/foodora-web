@@ -38,4 +38,8 @@
       </div>
     </div>
   </div>
+
+  @for(recipe of recipes; track recipe.id){
+  <h1>{{ recipe.title }}</h1>
+  }
 </div>

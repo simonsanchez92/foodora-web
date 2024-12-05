@@ -23,10 +23,13 @@ import { Recipe } from '../../shared/recipes/recipe.model';
 import { RecipesService } from '../../shared/recipes/recipes.service';
 import { LoadingService } from '../../shared/services/loading.service';
 
+import { RecipeCardComponent } from '../../features/search/recipe-card/recipe-card.component';
+
 @Component({
   selector: 'app-search',
   standalone: true,
   imports: [
+    RecipeCardComponent,
     BannerComponent,
     MatCardModule,
     MatButtonModule,
@@ -63,7 +66,13 @@ export class SearchComponent implements OnInit {
     }),
   });
 
-  ngOnInit(): void {}
+  test = [];
+  ngOnInit(): void {
+    const storedResults = localStorage.getItem('searchResults');
+    if (storedResults) {
+      this.recipes.set(JSON.parse(storedResults));
+    }
+  }
 
   onSubmit(form: FormGroup) {
     if (!form.valid) {
@@ -74,7 +83,6 @@ export class SearchComponent implements OnInit {
     this.loadingService.startLoading();
 
     this.errorMessage.set(null);
-    //this.loading.set(true)
     this.searchTerm.set(form.controls['term'].value ?? '');
 
     this.recipesService
@@ -97,17 +105,5 @@ export class SearchComponent implements OnInit {
           form.reset();
         },
       });
-  }
-
-  getDetails(id: number) {
-    this.recipesService.getOne(id).subscribe({
-      next: (recipe) => {
-        console.log(recipe);
-      },
-    });
-  }
-
-  onAdd() {
-    console.log('item added');
   }
 }
