@@ -16,14 +16,15 @@ export class RecipesService {
   );
   // BehaviorSubject to hold the state and allow subscriptions
   private stateSubject = new BehaviorSubject<RecipeDetail[]>(this.initialState);
-
   //Observable to expose the state
   state$ = this.stateSubject.asObservable();
 
-  private veganDishesSubject = new BehaviorSubject<number>(
-    this.stateSubject.value.filter((d) => d.vegan).length
-  );
-  veganDishes$ = this.veganDishesSubject.asObservable();
+  private dishCountSubject = new BehaviorSubject<{
+    vegan: number;
+    nonVegan: number;
+  }>(this.calculateDishCount(this.initialState));
+
+  dishCount$ = this.dishCountSubject.asObservable();
 
   getMany(term: string) {
     return this.httpClient
@@ -100,38 +101,42 @@ export class RecipesService {
 
     this.getOne(recipe.id).subscribe({
       next: (res) => {
-        console.log(res);
         newRecipe = res;
+
+        const { vegan, nonVegan } = this.dishCountSubject.value;
+
+        if (newRecipe.vegan && vegan >= 2) {
+          alert('You cannot add more than 2 vegan dishes');
+          return;
+        } else if (!newRecipe.vegan && nonVegan >= 2) {
+          alert('You cannot add more than 2 non-vegan dishes');
+          return;
+        }
 
         //Store recipe in db
         const updatedState = [...this.stateSubject.value, newRecipe];
         this.updateState(updatedState);
-
-        console.log(this.veganDishesSubject.value);
       },
     });
-
-    // if (prevDishes) {
-    //   const dishes: Recipe[] = JSON.parse(prevDishes);
-
-    //   console.log(dishes);
-    // } else {
-    //   console.log('No dishes found');
-    // }
-    //Check if 2 vegan / non-vegan
-    //Show error if any
-
-    console.log(this.stateSubject.value);
   }
 
   updateState(newState: RecipeDetail[]) {
     this.stateSubject.next(newState);
     localStorage.setItem('dishes', JSON.stringify(newState));
 
-    this.veganDishesSubject.next(newState.filter((dish) => dish.vegan).length);
+    this.dishCountSubject.next(this.calculateDishCount(newState));
   }
 
   clearState() {
     this.updateState([]);
+  }
+
+  private calculateDishCount(dishes: RecipeDetail[]): {
+    vegan: number;
+    nonVegan: number;
+  } {
+    const vegan = dishes.filter((d) => d.vegan).length;
+    const nonVegan = dishes.filter((d) => !d.vegan).length;
+    return { vegan, nonVegan };
   }
 }

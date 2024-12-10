@@ -40,3 +40,10 @@
 .menu-info-container span .mat-icon {
   margin-right: 8px;
 }
+
+.dishes-container {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}

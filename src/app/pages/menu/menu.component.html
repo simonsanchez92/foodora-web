@@ -37,9 +37,11 @@
         >
       </div>
     </div>
-  </div>
 
-  @for(recipe of recipes; track recipe.id){
-  <h1>{{ recipe.title }}</h1>
-  }
+    <div class="dishes-container">
+      @for(recipe of recipes; track recipe.id){
+      <app-dish-card [dish]="recipe"></app-dish-card>
+      }
+    </div>
+  </div>
 </div>

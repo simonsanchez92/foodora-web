@@ -1,0 +1,25 @@
+<mat-card class="dish-card" appearance="outlined">
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title>{{ dish().title }}</mat-card-title>
+      <img
+        mat-card-md-image
+        src="{{ dish().image }}"
+        alt="{{ dish().title }}"
+      />
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item>Price: {{ dish().pricePerServing }}$</mat-list-item>
+      <mat-list-item
+        >Preparation time: {{ dish().readyInMinutes }} minutes</mat-list-item
+      >
+      <mat-list-item>Health Score: {{ dish().healthScore }}</mat-list-item>
+      <mat-list-item
+        >Diet type: {{ dish().vegan ? "Vegan" : "Non-vegan" }}</mat-list-item
+      >
+    </mat-list>
+  </mat-card-content>
+</mat-card>
